@@ -1,0 +1,142 @@
+
+
+
+L = { a^n b^m c^p | n >= 1, m >= 2 }		p >= 0
+
+Șiruri din limbaj:
+aaaaabbb
+abb - lungimea minimă
+
+ab - nu este în limbaj
+
+
+G = (N, Σ, P, S)
+cu S în N
+și cu P o mulțime de producții de forma:
+N - mulțimea de simboluri neterminale
+Σ - alfabetul / mulțimea de simboluri terminale
+
+A → șir
+A este un neterminal
+șir conține terminali și neterminali
+sau șir este e (șirul vid, se mai notează și cu λ)
+
+S → aS | aB
+B → bB | bbC
+C → cC | e
+
+(pentru p >= 1,  C → cC | c)
+
+producțiile recursive ↔ partea variabilă a șirului (număr variabil de simboluri)
+producțiile nerecursive ↔ condiții la limită, așezarea șirului
+
+
+Gramatica este echivalentă cu
+S → aS
+S → aB
+B → bB
+B → bbC
+C → cC
+C → e
+
+Sau cu
+S → aB | aS
+...
+
+
+====================================================
+Ex1
+
+a b^n c d^m
+
+S -> aB | ac
+B -> bB | C
+C -> cD | c
+D -> dD | e
+
+sau
+
+S -> aB			- S are rolul să producă a-ul, apoi mergem mai departe
+B -> bB | C		- B are rolul să producă un număr oarecare de b-uri (>=0), apoi către C
+C -> cD			- C are rolul să produca c-ul, și mergem mai departe
+D -> dD | e		- D are rolul să producă un număr oarecare de d-uri (>=0)
+
+
+====================================================
+Ex2
+
+a^n b c^n
+
+S -> aSc | B
+B -> b
+
+sau
+
+S -> aSc | b
+
+
+
+====================================================
+Ex3
+
+a^2n b^m
+
+S->aaS|B
+B->bB|e
+
+------------------------
+Ex3b
+a^2n b^n
+
+S->aaSb|e
+
+
+====================================================
+Ex4
+
+(* = Kleene star)
+
+L = { w din {a,b}* | #a(w) = 2k }
+ (w ∈ {a,b}*)
+ - w este format din a-uri și b-uri, numărul de a-uri din w este par
+
+bbbbabaaab
+aa
+e
+bbbbbbb
+abababababa
+abbbbbbba
+...
+
+
+! Toate șirurile din gramatică sunt șiruri din limbaj (corectitudine)
+! Gramatică să poată genera toate șirurile din limbaj (completitudine)
+
+
+S → aaB | aBa | Baa | e
+B → bS | Sb | e
+- nu e bine, nu pot să generez, de exemplu, 4 a-uri consecutive
+- mă obligă să am a-uri în șir, dacă vreau să am b-uri
+
+S -> aaS | aSa | Saa | bS | Sb | e
+
+(GIC)
+
+GR:
+
+idee:
+abbbbbbbabbbbabbbbA -> A marchează că până acum am produs un număr impar de a-uri
+bbbbaaabbbabS -> S marchează că până acum am produs un număr par de a-uri
+
+S -> bS | aA | e	-- tranzițiile din starea în care am produs un număr par de a-uri
+A -> bA | aS		-- tranzițiile din starea în care am produs un număr impar de a-uri	
+
+
+
+
+
+
+
+
+
+

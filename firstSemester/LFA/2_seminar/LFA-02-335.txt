@@ -1,0 +1,155 @@
+
+
+Ex 1
+
+{ a^2m b^(n+1) c^(2n+1) d^m | m >= 1 }
+
+a^2m b^(n+1) c^(2n+1) d^m
+echivalent cu
+a^2p aa b^n b c c^2n d d^p
+
+S -> aaSd | aaBd
+            ---- m>=1, asigurat înainte de a trece mai departe în producțiile lui B
+     ----: a^2m d^m (indiferent de condiții pentru m)
+            
+B -> bBcc | bc
+            -- b^1 c^1
+     ---- b^n c^2n
+
+
+! număr "mare" de terminali -> produs prin producții recursive, în relația numerică cerută
+! numărul minim de simboluri -> produs prin producții nerecursive
+
+S
+aaSd
+aaaaSdd
+....
+aaaaaa..aaSd....ddd
+aaaaaa..aaaaBdd....ddd
+aaaaaa..aaaabBccdd....ddd
+aaaaaa..aaaabbBccccdd....ddd
+aaaaaa..aaaabbbcccccdd....ddd
+
+
+echivalent cu:
+
+S -> aaSd | aabBcd -> acopăr aici toate restricțiile pentru a,b,c,d
+B -> bBcc | e
+
+
+==========================================================
+Ex 2
+
+{ a^i b^j c^k | i,j,k >= 0, 2i = j sau 2j = k }
+
+
+{ a^i b^j c^k | i,j,k >= 0, 2i = j } U { a^i b^j c^k | i,j,k >= 0, 2j = k }
+
+{ a^i b^2i c^k | i,k >= 0 } U { a^i b^j c^2j | i,j >= 0 }
+
+S -> .... -> aabbbbc
+     .... -> aaaaaaabbcccc  
+
+
+S -> S1 | S2
+
+S1 -> A1C1
+A1 -> aA1bb | e
+C1 -> cC1 | e
+
+S2 -> A2B2
+A2 -> A2a | e
+B2 -> bB2cc | e
+
+
+sau
+
+S -> S1| S2
+
+S1 -> S1c| B
+B -> aBbb | e
+
+S2 -> aS2 | C
+C -> bCcc | e
+
+
+========================
+Ex3
+
+{ w din {a,b}* | #a(w) = 2k și #b(w) = 2p+1, cu k,p >= 0 }
+
+{ w din {a,b}* | #a(w) = 2k, k >= 0 } n { w din {a,b}* | #b(w) = 2p+1, cu p >= 0 }
+							" intersectat cu"
+
+
+S -> aA | bB1      -- "până acum am produs un șir cu număr de a, b, par"
+A -> aS | bB2      -- "până acum am produs un șir cu număr de a impar, b par"
+B2 -> aB1 | bA     -- "până acum am produs un șir cu număr de a impar, b impar"
+B1 -> aB2 | bS | e -- "până acum am produs un șir cu număr de a par, b impar"
+
+ababS
+ababaA
+abababB2
+abababaB1 -> aici de exemplu pot ieși
+
+
+"Trebuie să știm informații despre ce am produs până acum, ca să știm ce mai avem nevoie să producem / dacă putem încheia producția aici."
+
+( GR
+
+a^n b^m
+
+S -> aS | B
+B -> bB | e
+
+"dacă am S în șirul de lucru am produs până acum doar a-uri."
+"dacă am B în șirul de lucru, am produs a-uri, posibil și B-uri."
+
+
+
+șirurile care conțin subșirul bba
+
+S -> aS | bS | bbaA
+A -> aA | bA | e
+
+"dacă am S în șirul de lucru, nu (sunt sigur că) am produs până acum subșirul cerut."
+"dacă am A în șirul de lucru, sunt sigur că am produs șirul cerut, pot să ies."
+
+)
+
+
+================================
+Lucrare
+
+
+Gramatica pentru limbajul
+{ a^2m b^(n+p) c^(2n+p) d^m | m,p>=1, n>=0 }
+
+
+
+a^2m b^n b^p c^p c^2n d^m
+
+a^2m' aa b^n b^p' b c c^p' c^2n d d^m'
+|         |   ----------   |       |
+|         ------------------       |
+|-----------------------------------
+
+S -> aaSd | aaAd			a^2m' aa d d^m'
+A -> bAcc | B				b^n c^2n
+B -> bBc | bc				b^p' bc c^p'
+
+puteam și
+
+S -> aaSd | aaAd
+A -> bAcc | bAc | bc
+
+
+
+
+
+
+
+
+
+
+
