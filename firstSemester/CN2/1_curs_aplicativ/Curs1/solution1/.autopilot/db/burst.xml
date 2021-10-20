@@ -1,0 +1,4 @@
+<VitisHLS:BurstInfo>
+    <burst group="BURST_VERBOSE_MISSED" fe_name="UnknownUnderlyingObjectMissed" src_info="Curs1/output1.cpp:7:5" msg_id="214-117" msg_severity="INFO" msg_body="Cannot find or modify the underlying object pointed by x" ID="bb0.store.1" VarName="x"/>
+</VitisHLS:BurstInfo>
+

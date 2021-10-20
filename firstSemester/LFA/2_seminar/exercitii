@@ -1,0 +1,56 @@
+Ex.1
+a ^ (2m) b ^ (n+1) c^(2n+1) d^m | m >=1
+
+S -> aaSd | aaBd
+B -> bBcc | bc
+
+
+
+Ex.2
+
+{a^i b^j c^k | i,j,k >=0 , 2i = j sau 2j=k}
+
+{ a^i b^j c^k | i,j,k >= 0, 2i = j sau 2j = k }
+
+{ a^i b^2i c^k | i,k >= 0 } U { a^i b^j c^2j | i,j >= 0 }
+
+S -> S1 | S2 
+
+S1 -> A1C1
+A1 -> aA1bb | e
+C1 -> cC1 | e
+
+
+S2 -> A2B2
+A2 -> A2a | e 
+B2 -> bB2cc | e
+
+
+Ex.3
+
+{w din {a,b}* | #a(w) = 2k si #b(w) = 2k+1, cu k,p >=0}
+
+{w din {a,b}* | #a(w) = 2k, k >= 0} n {w din {a,b}* | #b(w) = 2p+ 1 , p >= 0}
+							  'intersectat cu'
+
+
+S -> aA | bB1         --- a , b ,par
+A -> aS | bB2         --- a impar , b par
+B2 -> aB1 | bA 		  --- a impar , b impar
+B1 -> aB2 | bS | e    --- a par , b impar
+
+ababS -> ababaA -> abababB2
+
+
+
+Ex. individual
+
+{a ^2m  b^(n+p) c^(2n+p) d^m | m,p>=1 , n>=0}
+
+{a ^2m {b^n * b^p} {c^2n * c^p} d^m }
+
+S -> aaSd | aaBd   --- stiu ca sunt '2m' a'uri si 'm' d'uri // nu are caz elementar
+B -> bBcc | bBc | bc  --- am terminat de generat a'uri si d'uri
+	 ---- = stiu ca am 'n' b'uri si '2n' c'uri
+	 		--- = stiu ca am 'p' b'uri si 'p' c'uri
+	 			 ---= ma asigur ca am minim un 'b' si un 'c' deoacerece p >=1

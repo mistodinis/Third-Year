@@ -1,0 +1,6 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/robert/Facultate/3_anul/Third-Year/1_sem/CN2/1_lab/Lab1.srcs/sources_1/new/halfadder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module halfadder
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/robert/Facultate/3_anul/Third-Year/1_sem/CN2/1_lab/Lab1.srcs/sim_1/new/halfadder_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module halfadder_tb
+INFO: [VRFC 10-2458] undeclared symbol s, assumed default net type wire [/home/robert/Facultate/3_anul/Third-Year/1_sem/CN2/1_lab/Lab1.srcs/sim_1/new/halfadder_tb.v:29]
+INFO: [VRFC 10-2458] undeclared symbol cOut, assumed default net type wire [/home/robert/Facultate/3_anul/Third-Year/1_sem/CN2/1_lab/Lab1.srcs/sim_1/new/halfadder_tb.v:29]
