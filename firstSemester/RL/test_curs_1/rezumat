@@ -1,0 +1,144 @@
+LAN - Local Area Network  (Acasa)
+MAN - Metropolitan Area Network (nu se mai folosesc)
+WAN - Wide Area Network  - numeroase protocoale -> MPLS , ATM , PPP
+
+LAN -> Router -> WAN
+
+PC cu o placa de retea - o interfata de retea
+	-2 placi = 2 interfete
+	
+Switch/ Router - mai multe interfete ( porturi)
+
+Protocol = set de reguli care guverneaza modul in care doua dispozitive schimba informatie intr-o retea
+
+Multiplexarea - Consta in gruparea mai multor fluxuri de date intr-un singur semnal peste un singur mediu partajat
+
+Medii de transmisie
+	-Cu fir
+		-Cablu torsadat
+			1.UTP
+			2.STP/FTP
+			3.ScTP
+		-Fibra optica
+			1.Multimode
+			2.Singlemode
+	-Fara fir(neghidat)
+		-Unde Radio
+		-Microunde
+		-Infrarosii
+		
+Performanta unei retele
+	-Throughput 
+		-Cantitatea de date transmise in unitatea de timp
+		- KB/s  /  Mbps
+	-Latenta
+		-Timpul necesar pentru ca un semnal(sau un bit) sa ajunga din A in B
+		-one-way vs round-trip time(RTT)
+	-Componente:
+		-Timpul de propagare
+		-Latenta introdusa de echipamente
+		
+		
+CURS 2
+
+Limitarile Nivelului Fizic
+	-Nu poate identifica statiile
+	-Nu poate comunica direct cu nivelurile software
+	-Gestioneaza fluxuri de biti
+
+Nivelul legatura de date:
+	-Identifica statiile prin adresare
+	-Ofera servicii de acces la mediiu nivelurilor superioare
+	-Organizeaza fluxul de date in cadre(frame'uri)
+
+LLC - Logical Link Control
+MAC - Media Access Control
+
+LLC 
+	-independent de tehnologia de transmisie de la nivelul fizic
+	-Multiplexeaza protocoalele de nivel superior
+	-Ofera facilitati pentru controlul fluxului
+	-Definit in 802.2
+	
+MAC
+	-Se ocupa  de protocoale pentru accesul mediului de transmisie
+	-Construieste cadrul prin incapsulare
+	-Este dependent de mediul de transmisie si tehnologie
+	-Standarde : 802.5 , 802.3
+			/	|		\
+		    v   v    	 v
+		Fibra c.torsadat  c.coaxial
+		
+Protocoale de nivel 2
+	Ethernet , PPP , ATM , Token Ring , Frame Delay
+	
+Ethernet
+	-Ethernet foloseste adrese pentru a identifica in mod unic o interfata de retea
+	-Adresele se numesc adrese MAC
+	-Adresele MAC:
+		1.Sunt locale LAN'ului din care face parte interfata(local scope)
+		2.Folosesc o schema de adresare plata(nu exista ierarhii de adrese)
+		3.Sunt scrise in ROM'ul placii de retea si incarcate la initializarea interfetei
+		4.Sistemul de operare poate fi configurat sa foloseasca o alta adresa MAC pentru o interfata insa cea din ROM nu poate fi schimbata
+		
+		
+Caracteristici Ethernet
+	-Bit Time - timpul necesar transmiterii unui singur bit
+		-10Mbps - sunt necesare 100ns
+		-100Mbps - 10ns
+		-1Gbps - 1ns
+	-SlotTime - este timpul necesar semnalului pentru a parcurge cel mai lung segment de retea
+		-pentru 10 , 100Mbps el este 512*BitTime(64bytes)
+		-pentru 1Gbps este 4096*BitTime(512bytes)
+		
+	-Interframe spacing = timpul minim intre doua cadre consecutive
+		-Valoarea sa este 96* BitTime
+		-Rolul sau este sa permita statiilor lente sa proceseze cadrul curent si sa se pregateasca pentru urmatorul cadru
+		
+		
+
+Coliziuni
+	-Retele Ethernet full-duplex
+	
+	-Tipuri de coliziuni
+		-Coliziuni locale(local collisions)
+			-se produc in reteaua locala
+			-Pe cablu coaxial sunt detectate prin cresterea tensiunii electrice peste limita admisa
+			-Pe un cablu twisted-pair 
+		-Coliziunile la distanta(remote collisions)
+			-Nu se produc in reteua locala
+			-Sunt marcate de existenta unor cadre mai mici decat lungimea minima si cu FCS invalid
+		-Coliziunile tarzii(late collisions)
+			-Se produc dupa ce au fost trimisi primii 64 de bytes
+			-Cea mai importanta diferenta intre ele si coliziunile la distanta este ca un (NIC-Network Interface Controller) retransmite automat cadrele care au produs coliziuni inainte de a primi 64 de bytes , dar nu le transmite pe cele produse dupa
+			-Retransmisia cade in sarcina nivelurilor superioare(care detecteaza absenta cadrului prin time-out)
+			
+
+Latenta retelei
+	-Latenta reprezinta timpul necesar unui bit sa ajunga din A in B
+	
+Rolul Switch-ului
+Modul de operare al switch'ului
+	-se bazeaza pe o tabela de asocieri intre porturi si adrese MAC: 
+		-Tabel CAM(Content Addressable Memory)
+	-fiecare switch ia decizii bazandu-se pe propria tabela CAM
+	
+Store-and-Forward Switching
+	-Primeste intreg cadrul
+	-Calculeaza CRC
+	-Verifica lungime cadru
+	-Daca totul e corect , determina adresa destinatie
+	-Trimite Cadrul
+	
+Cut-Through Switching
+	-Fast-Forward
+		-Primeste cadrul pana la adresa destinatie
+		-Determina adresa destinatie
+		-Trimite cadrul
+	-Fragment-free
+		-Primeste primii 64 de octeti
+		-Determina adresa destinatie
+		-Trimite cadrul
+	
+	
+
